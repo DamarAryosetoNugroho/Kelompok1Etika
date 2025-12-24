@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makalah Etika Profesi | Kelompok 1</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #2563eb;
+            --accent: #3b82f6;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ===== SIDEBAR NAV ===== */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--primary);
+            color: white;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: #94a3b8;
+            padding: 14px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .sidebar a i { width: 25px; font-size: 1.1rem; }
+
+        /* Warna saat diklik atau hover - Dibuat kontras */
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sidebar a:active, .sidebar a:focus {
+            background: var(--secondary) !important;
+            color: white !important;
+        }
+
+        /* ===== MAIN CONTENT AREA ===== */
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            width: 100%;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Mobile Header */
+        .mobile-top-bar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1100;
+            justify-content: space-between;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 24px;
+            margin-bottom: 50px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        header h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 15px; }
+        header p { font-size: 1.2rem; opacity: 0.8; }
+
+        .section { margin-bottom: 60px; scroll-margin-top: 40px; }
+        .section h2 { 
+            color: var(--primary); 
+            font-size: 1.8rem; 
+            margin-bottom: 30px; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+        }
+        .section h2::after { content: ""; height: 4px; width: 60px; background: var(--secondary); border-radius: 2px; }
+
+        .card {
+            background: var(--white);
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #f1f5f9;
+        }
+
+        .card h3 { margin: 40px 0 20px; color: var(--secondary); font-size: 1.5rem; font-weight: 700; }
+        .card h4 { margin: 25px 0 10px; font-size: 1.2rem; color: var(--primary); font-weight: 700; }
+        .card p { margin-top: 15px; text-align: justify; color: var(--text-dark); }
+        .card ul { margin-left: 25px; margin-top: 15px; }
+        .card li { margin-bottom: 12px; }
+
+        hr { border: 0; height: 1px; background: #e2e8f0; margin: 40px 0; }
+
+        /* Identity Styles */
+        .identity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .id-item { background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        .id-item label { display: block; font-size: 0.7rem; color: var(--text-light); text-transform: uppercase; font-weight: 800; }
+        .id-item span { font-weight: 600; color: var(--primary); }
+
+        footer { text-align: center; padding: 40px; color: var(--text-light); border-top: 1px solid #e2e8f0; margin-top: 40px; }
+
+        /* Overlay Mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        /* ===== RESPONSIVE MEDIA QUERIES ===== */
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-wrapper { margin-left: 0; padding: 100px 20px 40px; }
+            .mobile-top-bar { display: flex; }
+            .sidebar-overlay.active { display: block; }
+            header { padding: 40px 20px; }
+            header h1 { font-size: 1.8rem; }
+            .card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-top-bar">
+        <span style="font-weight: 700; letter-spacing: 1px;">KELOMPOK 1</span>
+        <button class="menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+    </div>
+
+    <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <div class="sidebar" id="sidebar">
+        <h2><i class="fas fa-shield-alt"></i> Etika Profesi</h2>
+        <div class="sidebar-nav">
+            <a href="#identitas" onclick="closeSidebar()"><i class="fas fa-users"></i> Identitas</a>
+            <a href="#bab1" onclick="closeSidebar()"><i class="fas fa-book-open"></i> BAB I</a>
+            <a href="#bab2" onclick="closeSidebar()"><i class="fas fa-scroll"></i> BAB II</a>
+            <a href="#bab3" onclick="closeSidebar()"><i class="fas fa-microscope"></i> BAB III</a>
+            <a href="#bab4" onclick="closeSidebar()"><i class="fas fa-flag-checkered"></i> BAB IV</a>
+            <a href="#pustaka" onclick="closeSidebar()"><i class="fas fa-bookmark"></i> Daftar Pustaka</a>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <div class="content-container">
+            <header>
+                <h1>Analisis Kerentanan Sistem Informasi</h1>
+                <p>Terhadap Ancaman Akses Tidak Berizin (Unauthorized Access)</p>
+            </header>
+
+            <section id="identitas" class="section">
+                <h2>Identitas Kelompok</h2>
+                <div class="card">
+                    <div class="identity-grid">
+                        <div class="id-item"><label>Mata Kuliah</label><span>Etika Profesi</span></div>
+                        <div class="id-item"><label>Dosen</label><span>Fidya Eka Prahesti, M.T.</span></div>
+                        <div class="id-item"><label>Program Studi</label><span>Sistem Informasi</span></div>
+                        <div class="id-item"><label>Universitas</label><span>UNP Kediri</span></div>
+                    </div>
+                    <h4 style="margin-top:30px;">Daftar Anggota Kelompok 1:</h4>
+                    <ul style="list-style:none; margin-left:0;">
+                        <li style="background:#f1f5f9; padding:12px 20px; border-radius:10px; margin-bottom:10px;"><i class="fas fa-user-circle" style="color:var(--secondary); margin-right:10px;"></i> Deni Priyanto (2413030003)</li>
+                        <li style="background:#f1f5f9; padding:12px 20px; border-radius:10px; margin-bottom:10px;"><i class="fas fa-user-circle" style="color:var(--secondary); margin-right:10px;"></i> Johannes Rivano Fashella F. (2413030010)</li>
+                        <li style="background:#f1f5f9; padding:12px 20px; border-radius:10px; margin-bottom:10px;"><i class="fas fa-user-circle" style="color:var(--secondary); margin-right:10px;"></i> Absa Zeta Zetira (2413030013)</li>
+                        <li style="background:#f1f5f9; padding:12px 20px; border-radius:10px; margin-bottom:10px;"><i class="fas fa-user-circle" style="color:var(--secondary); margin-right:10px;"></i> Damar Aryoseto Nugroho (2413030023)</li>
+                        <li style="background:#f1f5f9; padding:12px 20px; border-radius:10px; margin-bottom:10px;"><i class="fas fa-user-circle" style="color:var(--secondary); margin-right:10px;"></i> Silvia Aura Ramadhani (2413030025)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="bab1" class="section">
+                <h2>BAB I – Pendahuluan</h2>
+                <div class="card">
+                    <h3>A. Latar Belakang</h3>
+                    <p>Perkembangan teknologi informasi yang semakin pesat telah membawa perubahan signifikan dalam berbagai aspek kehidupan manusia, baik dalam sektor pemerintahan, pendidikan, kesehatan, maupun dunia industri. Sistem informasi kini menjadi tulang punggung dalam pengelolaan data, pengambilan keputusan, serta penyediaan layanan publik yang efektif dan efisien. Digitalisasi yang masif ini mendorong organisasi untuk mengelola data dalam jumlah besar dengan ketergantungan tinggi terhadap teknologi informasi.</p>
+                    <p>Namun, di balik berbagai manfaat tersebut, perkembangan teknologi juga menghadirkan tantangan serius dalam bentuk ancaman keamanan siber. Salah satu ancaman yang paling krusial adalah akses tidak berizin (unauthorized access), yaitu tindakan memasuki sistem komputer, jaringan, atau data tanpa hak dan otorisasi yang sah. Ancaman ini dapat menyebabkan kebocoran data, manipulasi informasi, gangguan operasional, serta kerugian finansial dan reputasi bagi organisasi yang terdampak.</p>
+                    <p>Fenomena kejahatan siber tidak lagi bersifat hipotetis, melainkan telah menjadi kenyataan yang sering terjadi, baik di tingkat nasional maupun global. Di Indonesia, kasus kebocoran data BPJS Kesehatan pada tahun 2021 menjadi salah satu contoh nyata betapa rentannya sistem informasi yang mengelola data publik berskala besar. Insiden tersebut mengungkap bahwa ratusan juta data pribadi masyarakat, termasuk data sensitif terkait kesehatan, dapat terekspos akibat lemahnya pengamanan sistem.</p>
+                    <p>Kebocoran data semacam ini tidak hanya menimbulkan dampak teknis, tetapi juga menimbulkan persoalan etika profesi dan hukum. Profesional teknologi informasi memiliki tanggung jawab moral dan profesional untuk menjaga kerahasiaan, integritas, dan ketersediaan data yang dikelolanya. Kegagalan dalam menjalankan tanggung jawab tersebut dapat merugikan masyarakat luas dan menurunkan kepercayaan publik terhadap institusi penyedia layanan.</p>
+                    <p>Berdasarkan latar belakang tersebut, penting untuk dilakukan kajian mendalam mengenai kerentanan sistem informasi terhadap ancaman akses tidak berizin. Melalui analisis teoretis dan studi kasus, diharapkan dapat diperoleh pemahaman yang komprehensif terkait penyebab, dampak, serta strategi penanggulangan yang efektif, khususnya dari perspektif etika profesi teknologi informasi.</p>
+                    <hr>
+                    <h3>B. Rumusan Masalah</h3>
+                    <p>Berdasarkan uraian latar belakang di atas, maka rumusan masalah dalam makalah ini dirumuskan dalam beberapa pertanyaan penelitian sebagai berikut:</p>
+                    <ul>
+                        <li><strong>Bagaimana konsep dan karakteristik akses tidak berizin (unauthorized access) dalam perspektif cybercrime?</strong><br>Pertanyaan ini bertujuan untuk memahami definisi, bentuk, serta mekanisme terjadinya akses tidak berizin sebagai salah satu jenis kejahatan siber.</li>
+                        <li><strong>Apa saja faktor penyebab kerentanan sistem informasi terhadap ancaman akses tidak berizin?</strong><br>Rumusan masalah ini difokuskan pada identifikasi faktor teknis, manusia, dan organisasi yang berkontribusi terhadap lemahnya keamanan sistem informasi.</li>
+                        <li><strong>Bagaimana dampak yang ditimbulkan oleh akses tidak berizin terhadap individu dan institusi?</strong><br>Pertanyaan ini membahas berbagai konsekuensi yang muncul akibat kebocoran data, baik dari sisi sosial, ekonomi, maupun kepercayaan publik.</li>
+                        <li><strong>Bagaimana strategi penanggulangan yang dapat diterapkan untuk memitigasi ancaman akses tidak berizin?</strong><br>Rumusan ini bertujuan untuk mengkaji langkah-langkah preventif dan responsif yang dapat dilakukan secara teknis, manajerial, dan hukum.</li>
+                    </ul>
+                    <hr>
+                    <h3>C. Tujuan Penulisan</h3>
+                    <p>Adapun tujuan yang ingin dicapai melalui penulisan makalah ini adalah sebagai berikut:</p>
+                    <ul>
+                        <li><strong>Menganalisis konsep akses tidak berizin dalam konteks keamanan siber.</strong><br>Tujuan ini diarahkan untuk memberikan pemahaman teoretis mengenai unauthorized access sebagai bagian dari cybercrime.</li>
+                        <li><strong>Mengidentifikasi faktor penyebab kerentanan sistem informasi.</strong><br>Penulisan ini bertujuan untuk mengkaji berbagai faktor yang menyebabkan lemahnya keamanan sistem informasi, baik dari aspek teknis maupun non-teknis.</li>
+                        <li><strong>Menganalisis dampak akses tidak berizin terhadap individu dan institusi.</strong><br>Tujuan ini dimaksudkan untuk menjelaskan konsekuensi yang ditimbulkan oleh kebocoran data dan akses ilegal terhadap sistem informasi.</li>
+                        <li><strong>Merumuskan strategi penanggulangan yang komprehensif.</strong><br>Penelitian ini bertujuan untuk memberikan rekomendasi langkah-langkah strategis dalam mencegah dan menangani ancaman akses tidak berizin secara berkelanjutan.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="bab2" class="section">
+                <h2>BAB II – Landasan Teori</h2>
+                <div class="card">
+                    <h3>A. Teori Cybercrime dan Unauthorized Access</h3>
+                    <p>Dalam kerangka ilmu kriminologi siber, akses tidak berizin dikategorikan sebagai kejahatan komputer murni (<em>pure computer crime</em>), di mana komputer dan sistem informasi menjadi target sekaligus alat untuk melakukan kejahatan (Tavani, 2020). Konsep dasar dari unauthorized access adalah setiap tindakan yang melanggar prinsip otorisasi dalam sistem keamanan informasi, yaitu prinsip yang menjamin bahwa hanya pengguna yang sah dan memiliki hak (<em>authority</em>) yang dapat mengakses sumber daya tertentu.</p>
+                    <p>Motif di balik akses tidak berizin sering dikaji melalui berbagai lensa teori. Teori <em>Routine Activity Theory</em> (Cohen dan Felson) yang diadaptasi ke dunia siber menyatakan bahwa kejahatan terjadi ketika terdapat pelaku yang termotivasi (<em>motivated offender</em>), target yang sesuai (<em>suitable target</em>), dan tidak adanya pengawas yang mampu mencegahnya (<em>capable guardian</em>). Dalam konteks siber, guardian tidak hanya berarti personel keamanan, tetapi juga sistem keamanan seperti firewall, sistem deteksi intrusi, dan kebijakan akses yang ketat. Ketiga elemen ini berkonvergen dalam ruang maya, menciptakan peluang terjadinya unauthorized access (Maimon & Louderback, 2022).</p>
+                    <hr>
+                    <h3>B. Kerangka Hukum Siber (Cyberlaw)</h3>
+                    <p>Secara yuridis, tindakan unauthorized access telah diatur dalam berbagai instrumen hukum nasional dan internasional. Di Indonesia, payung hukum utama adalah Undang-Undang Nomor 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik (UU ITE) sebagaimana telah diubah dengan UU Nomor 19 Tahun 2016. Pasal 30 UU ITE secara spesifik mengancam pidana bagi setiap orang yang dengan sengaja dan tanpa hak atau melawan hukum mengakses komputer dan/atau sistem elektronik milik orang lain dengan cara apa pun. Ancaman pidananya cukup berat, berupa penjara dan denda.</p>
+                    <p>Secara internasional, konvensi seperti <em>Budapest Convention on Cybercrime</em> (2001) juga mendefinisikan illegal access (akses ilegal) sebagai tindak pidana inti yang harus diadopsi oleh negara-negara penandatangan. Konvensi ini menekankan pentingnya harmonisasi hukum untuk memerangi kejahatan siber yang bersifat lintas batas. Dalam praktiknya, penegakan hukum terhadap unauthorized access sering terkendala oleh kompleksitas teknis pembuktian, kesulitan identifikasi pelaku di dunia maya yang anonim, dan koordinasi lintas yurisdiksi (Maras, 2021). Oleh karena itu, pendekatan hukum harus diperkuat dengan kapasitas investigasi digital yang memadai.</p>
+                </div>
+            </section>
+
+            <section id="bab3" class="section">
+                <h2>BAB III – Isi dan Pembahasan</h2>
+                <div class="card">
+                    <h3>A. Analisis Motif dan Penyebab Kerentanan Sistem Informasi: Studi Kasus BPJS Kesehatan</h3>
+                    <p>Insiden kebocoran data BPJS Kesehatan yang terungkap pada tahun 2021 merupakan salah satu kasus terbesar dalam sejarah keamanan siber di Indonesia. Kebocoran ini melibatkan ratusan juta data peserta, termasuk Nomor Induk Kependudukan (NIK), alamat, nomor kartu keluarga, hingga informasi sensitif terkait layanan kesehatan. Peristiwa ini menunjukkan bahwa sistem informasi berskala nasional pun tidak kebal terhadap ancaman akses tidak berizin.</p>
+                    <p>Kasus tersebut tidak dapat dipandang sebagai kejadian yang berdiri sendiri, melainkan sebagai indikasi adanya kelemahan sistemik dalam pengelolaan keamanan informasi. Kerentanan ini muncul akibat kombinasi berbagai faktor yang saling berkaitan, baik dari sisi teknis, manusia, maupun tata kelola organisasi.</p>
+                    
+                    <h4>1. Motif Pelaku Akses Tidak Berizin</h4>
+                    <p>Motif utama dalam kasus kebocoran data BPJS Kesehatan diduga kuat bersifat ekonomi. Data pribadi berskala besar memiliki nilai jual tinggi di pasar gelap siber (dark web), terutama data yang bersifat permanen seperti NIK dan riwayat kesehatan. Data tersebut dapat digunakan untuk penipuan finansial, pemalsuan identitas, pendaftaran pinjaman online ilegal, hingga rekayasa sosial yang menargetkan korban secara spesifik.</p>
+                    <p>Selain motif ekonomi, terdapat pula kemungkinan motif non-finansial seperti hacktivism atau upaya menunjukkan kelemahan sistem pemerintah. Namun, bukti yang beredar lebih mengarah pada motif ekonomi mengingat adanya indikasi penjualan data tersebut di forum-forum siber tertutup.</p>
+
+                    <h4>2. Penyebab Kerentanan dari Aspek Teknis</h4>
+                    <p>Dari aspek teknis, kerentanan sistem informasi BPJS Kesehatan diduga disebabkan oleh lemahnya penerapan mekanisme keamanan dasar. Hal ini dapat mencakup autentikasi dan otorisasi yang tidak optimal, pengelolaan hak akses yang terlalu luas, serta kurangnya pembaruan sistem dan perangkat lunak secara berkala. Selain itu, minimnya pemantauan aktivitas sistem dan audit log secara berkelanjutan menyebabkan aktivitas mencurigakan sulit terdeteksi sejak dini. Dalam sistem yang terintegrasi dengan banyak pihak eksternal, satu celah kecil dapat menjadi pintu masuk bagi penyerang untuk mengakses sistem inti.</p>
+
+                    <h4>3. Penyebab Kerentanan dari Aspek Manusia dan Organisasi</h4>
+                    <p>Faktor manusia sering kali menjadi titik terlemah dalam sistem keamanan informasi. Rendahnya kesadaran keamanan siber di lingkungan organisasi dapat menyebabkan kelalaian, seperti penggunaan kata sandi yang lemah, kurangnya kewaspadaan terhadap serangan phishing, serta ketidakpatuhan terhadap prosedur keamanan.</p>
+                    <p>Dari sisi organisasi, keamanan sistem sering kali belum menjadi prioritas utama dalam tahap perancangan. Banyak sistem informasi dikembangkan dengan fokus pada fungsi dan kecepatan layanan, sementara aspek keamanan baru diperhatikan setelah terjadi insiden. Kondisi ini memperbesar risiko terjadinya akses tidak berizin.</p>
+
+                    <hr>
+                    <h3>B. Dampak Insiden Kebocoran Data BPJS Kesehatan</h3>
+                    <p>Kebocoran data BPJS Kesehatan menimbulkan dampak yang luas dan bersifat multidimensional, tidak hanya bagi individu, tetapi juga bagi institusi dan negara. Dampak ini menunjukkan bahwa keamanan data merupakan aspek krusial dalam penyelenggaraan layanan publik.</p>
+                    
+                    <h4>1. Dampak terhadap Individu</h4>
+                    <p>Bagi individu, kebocoran data pribadi menimbulkan risiko pencurian identitas, penipuan finansial, serta penyalahgunaan data untuk berbagai kejahatan digital. Informasi kesehatan yang bersifat sensitif juga berpotensi menimbulkan stigma sosial dan tekanan psikologis bagi korban.</p>
+                    
+                    <h4>2. Dampak terhadap Institusi</h4>
+                    <p>Dari sisi institusi, kebocoran data menyebabkan menurunnya kepercayaan publik terhadap BPJS Kesehatan sebagai pengelola data nasional. Reputasi institusi menjadi tercoreng dan membutuhkan upaya besar untuk pemulihan, baik dari sisi teknologi maupun komunikasi publik.</p>
+                    
+                    <h4>3. Dampak terhadap Negara dan Regulasi</h4>
+                    <p>Secara nasional, insiden ini mendorong meningkatnya perhatian terhadap urgensi perlindungan data pribadi dan penguatan regulasi keamanan siber. Kasus BPJS Kesehatan menjadi momentum penting dalam mendorong pembentukan kebijakan yang lebih tegas terkait pengelolaan data publik.</p>
+
+                    <hr>
+                    <h3>C. Strategi Penanggulangan Ancaman Akses Tidak Berizin secara Multilayer</h3>
+                    <p>Menghadapi ancaman akses tidak berizin, diperlukan strategi penanggulangan yang komprehensif dan berlapis (multilayer defense). Pendekatan ini bertujuan untuk mengurangi risiko dari berbagai sisi secara simultan.</p>
+                    
+                    <h4>1. Strategi Teknis</h4>
+                    <p>Strategi teknis meliputi penerapan Zero Trust Architecture, penggunaan Multi-Factor Authentication (MFA), enkripsi data, serta pelaksanaan uji kerentanan dan pengujian penetrasi secara berkala.</p>
+                    
+                    <h4>2. Strategi Manajerial dan Sumber Daya Manusia</h4>
+                    <p>Organisasi perlu membangun budaya keamanan siber melalui pelatihan rutin, kebijakan manajemen identitas dan akses yang ketat, serta pembentukan tim respons insiden keamanan siber (CSIRT).</p>
+                    
+                    <h4>3. Strategi Hukum dan Regulasi</h4>
+                    <p>Penguatan penegakan hukum terhadap kejahatan siber, peningkatan kapasitas forensik digital, serta penerapan regulasi perlindungan data pribadi menjadi fondasi penting dalam mencegah dan menangani ancaman akses tidak berizin.</p>
+                </div>
+            </section>
+
+            <section id="bab4" class="section">
+                <h2>BAB IV – Penutup</h2>
+                <div class="card">
+                    <h3>A. Kesimpulan</h3>
+                    <p>Berdasarkan pembahasan yang telah diuraikan pada bab-bab sebelumnya, dapat disimpulkan bahwa ancaman akses tidak berizin (unauthorized access) merupakan salah satu bentuk kejahatan siber yang memiliki dampak serius terhadap keamanan sistem informasi. Ancaman ini tidak hanya berkaitan dengan aspek teknis, tetapi juga menyentuh dimensi etika profesi, tata kelola organisasi, serta kepercayaan publik terhadap penyelenggara layanan berbasis teknologi informasi.</p>
+                    <p>Studi kasus kebocoran data BPJS Kesehatan menunjukkan bahwa kerentanan sistem informasi tidak muncul secara tiba-tiba, melainkan merupakan hasil dari akumulasi berbagai faktor yang saling berkaitan. Faktor teknis seperti lemahnya mekanisme autentikasi dan pengelolaan hak akses, faktor manusia berupa rendahnya kesadaran keamanan siber, serta faktor organisasi yang belum menempatkan keamanan sebagai prioritas utama, menjadi penyebab utama terjadinya insiden tersebut.</p>
+                    <p>Dari perspektif etika profesi, insiden kebocoran data menegaskan pentingnya tanggung jawab moral para profesional teknologi informasi dalam menjaga kerahasiaan, integritas, dan ketersediaan data. Kelalaian dalam menerapkan standar keamanan yang memadai tidak hanya berdampak pada kerugian material, tetapi juga dapat melanggar nilai-nilai etika dan ketentuan hukum yang berlaku. Oleh karena itu, keamanan sistem informasi harus dipahami sebagai bagian yang tidak terpisahkan dari profesionalisme di bidang teknologi informasi.</p>
+                    <hr>
+                    <h3>B. Saran</h3>
+                    <p>Berdasarkan kesimpulan tersebut, penulis memberikan beberapa saran yang diharapkan dapat menjadi bahan pertimbangan dalam upaya pencegahan dan penanggulangan ancaman akses tidak berizin di masa mendatang.</p>
+                    <p>Pertama, bagi organisasi atau institusi pengelola data publik, disarankan untuk menerapkan kerangka keamanan siber yang komprehensif dan berlapis. Penerapan konsep Zero Trust Architecture, penguatan manajemen identitas dan akses, serta pelaksanaan audit keamanan secara berkala perlu dijadikan standar dalam pengelolaan sistem informasi.</p>
+                    <p>Kedua, peningkatan kualitas sumber daya manusia di bidang keamanan siber perlu menjadi perhatian utama. Program pelatihan dan peningkatan kesadaran keamanan siber harus dilakukan secara berkelanjutan agar setiap individu dalam organisasi memahami peran dan tanggung jawabnya dalam menjaga keamanan sistem informasi.</p>
+                    <p>Ketiga, dari sisi regulasi dan penegakan hukum, diperlukan penguatan implementasi peraturan perundang-undangan terkait kejahatan siber dan perlindungan data pribadi. Aparat penegak hukum juga perlu dibekali dengan kemampuan forensik digital yang memadai agar mampu menangani kasus kejahatan siber secara efektif dan profesional.</p>
+                    <p>Akhir kata, diharapkan makalah ini dapat memberikan kontribusi pemikiran bagi mahasiswa dan pembaca dalam memahami pentingnya keamanan sistem informasi serta tanggung jawab etis profesi teknologi informasi. Keamanan siber bukan hanya persoalan teknis, melainkan fondasi penting dalam menjaga kepercayaan dan keberlanjutan layanan digital di era modern.</p>
+                </div>
+            </section>
+
+            <section id="pustaka" class="section">
+                <h2>Daftar Pustaka</h2>
+                <div class="card">
+                    <p>Andriansyah, R. (2021). Analisis Risiko Keamanan Siber pada Sistem Informasi Terintegrasi: Studi Kasus di Sektor Pelayanan Publik. <em>Jurnal Sistem Informasi Indonesia</em>, 5(2), 112–125.</p>
+                    <p>Kurniawan, T., & Pratama, A. R. (2023). Faktor Manusia dalam Insiden Kebocoran Data di Instansi Pemerintah Indonesia: Pendekatan Studi Fenomenologi. <em>Jurnal Ilmu Komputer dan Teknologi Informasi</em>, 10(1), 45–59.</p>
+                    <p>Maimon, D., & Louderback, E. R. (2022). Cyber-Dependent Crimes: An Interdisciplinary Review. <em>Annual Review of Criminology</em>, 5, 191–216.</p>
+                    <p>Maras, M. H. (2021). <em>Cybercriminology</em> (2nd ed.). New York: Oxford University Press.</p>
+                    <p>Prasetyo, Y., & Arief, B. (2023). Analisis Forensik Digital dan Implikasi Hukum Kebocoran Data BPJS Kesehatan 2021. <em>Jurnal Ilmiah Teknologi Sistem Informasi</em>, 9(1), 45–60.</p>
+                    <p>Rose, S., Borchert, O., Mitchell, S., & Connelly, S. (2020). <em>Zero Trust Architecture</em>. Special Publication (NIST SP) 800-207. Gaithersburg: National Institute of Standards and Technology.</p>
+                    <p>Siahaan, M. P. (2024). Tata Kelola Keamanan Informasi di Sektor Publik: Urgensi dan Implementasi Standar Internasional. <em>Jurnal Kebijakan Publik</em>, 18(1), 33–48.</p>
+                    <p>Sutanto, A. (2022). Urgensi Pengesahan Undang-Undang Perlindungan Data Pribadi dalam Menjawab Tantangan Keamanan Siber di Indonesia. <em>Jurnal Hukum dan Pembangunan</em>, 52(3), 678–699.</p>
+                    <p>Tavani, H. T. (2020). <em>Ethics and Technology: Controversies, Questions, and Strategies for Ethical Computing</em> (5th ed.). Hoboken: John Wiley & Sons.</p>
+                    <p>Widjaja, F. I., & Sari, P. K. (2022). Ekonomi Bawah Tanah Siber: Analisis Peredaran dan Moneterisasi Data Pribadi Hasil Pembobolan. <em>Jurnal Ekonomi dan Bisnis Digital</em>, 3(2), 89–104.</p>
+                </div>
+            </section>
+
+            <footer>
+                <p>© 2025 Kelompok 1 – Etika Profesi | Universitas Nusantara PGRI Kediri</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+        function closeSidebar() {
+            if(window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('overlay').classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
